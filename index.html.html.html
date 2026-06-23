@@ -1,0 +1,671 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audritz Songcat - Personal Profile & Story</title>
+    <style>
+        :root {
+            --body-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --heading-font: 'Georgia', serif;
+            --primary-color: #0d3b2e;
+            --secondary-color: #b87d4b;
+            --accent-blue: #0056b3;
+            --bg-light: #f9f6f0;
+            --bg-white: #ffffff;
+            --text-dark: #222222;
+            --text-muted: #666666;
+            --max-width: 1100px;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .hero-section {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .banner-bg {
+            height: 280px;
+            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: flex-end;
+            margin-top: -80px;
+            padding-bottom: 30px;
+        }
+
+        .profile-pic-container {
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid var(--bg-white);
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.03);
+        }
+
+        .profile-info {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .profile-info h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .profile-info p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .btn-action {
+            background-color: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .btn-action:hover {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        .about-section {
+            text-align: center;
+            padding: 40px 0 20px 0;
+        }
+
+        .section-tag {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .sidebar-card {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+            height: fit-content;
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 10px;
+        }
+
+        .details-list, .hobby-list {
+            list-style: none;
+        }
+
+        .details-list li, .hobby-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            color: var(--text-dark);
+        }
+
+        .details-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .details-list strong {
+            color: var(--primary-color);
+        }
+
+        .details-list span {
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .hobby-list li {
+            display: flex;
+            align-items: center;
+        }
+
+        .hobby-list li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -0.5em;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-top: 10px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .main-story-card {
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            padding: 40px;
+        }
+
+        .story-header-area {
+            margin-bottom: 25px;
+        }
+
+        .story-header-area h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .story-img-wrapper {
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .story-img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-img:hover {
+            transform: scale(1.02);
+        }
+
+        .img-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .story-body {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin: 25px 0;
+        }
+
+        .story-body p {
+            margin-bottom: 15px;
+        }
+
+        .highlights-box {
+            background-color: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .highlights-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .highlight-item {
+            background: var(--bg-white);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            font-weight: 500;
+        }
+
+        .btn-edit-details {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px dashed var(--secondary-color);
+            color: var(--secondary-color);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit-details:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: var(--heading-font);
+            font-size: 1.3rem;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: var(--body-font);
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-modal {
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-save {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #eee;
+            color: var(--text-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 850px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: -60px;
+            }
+            .profile-info {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            .banner-bg {
+                height: 180px;
+            }
+            .main-story-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="banner-bg"></div>
+        <div class="container" style="padding: 0 20px;">
+            <div class="profile-container">
+                <a href="https://drive.google.com/file/d/1JEDLZBI6_ZVRz8Rklj_P-3e_VuT8IFhS/view?usp=drivesdk" target="_blank" class="profile-pic-container">
+                    <img src="myphoto.jpg" alt="Audritz Songcat" class="profile-pic">
+                </a>
+                <div class="profile-info">
+                    <h1 id="hero-name">Audritz Songcat</h1>
+                    <p id="hero-status">Senior High School Student</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1JEDLZBI6_ZVRz8Rklj_P-3e_VuT8IFhS/view?usp=drivesdk" target="_blank" class="btn-action">
+                    View Full Photo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="about-section">
+            <p class="section-tag">Personal Profile</p>
+            <h2>About Me</h2>
+            <p class="about-text">
+                Hello! My name is <b id="about-name">Audritz Songcat</b>. I am a Senior High School student.Enjoys to learn about technology, computers, and programming. I'm hardworking, responsible, and always willing to learn new skills.
+            </p>
+            <hr style="border: 0; height: 1px; background: #ddd; max-width: 200px; margin: 0 auto;">
+        </section>
+
+        <div class="content-grid">
+            <aside>
+                <div class="sidebar-card">
+                    <h3>Personal Details</h3>
+                    <ul class="details-list" id="personal-details-list">
+                        <li>return to normal layout<strong>Full Name:</strong> <span id="display-name">Audritz Songcat</span></li>
+                        <li><strong>Status:</strong> <span id="display-status">Senior High Student</span></li>
+                        <li><strong>Age:</strong> <span id="display-age">17</span></li>
+                        <li><strong>Location:</strong> <span id="display-location">Davao Region, Philippines</span></li>
+                    </ul>
+                    <button class="btn-edit-details" onclick="openEditModal()">✏️ Edit / Add Details</button>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>Hobbies & Interests</h3>
+                    <ul class="hobby-list">
+                        <li>Playing Mobile Games</li>
+                        <li>Watching Movies</li>
+                        <li>Listening to Music</li>
+                        <li>Using Computers</li>
+                        <li>Learning Programming</li>
+
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>Profile Video Presentation</h3>
+                    <p style="margin-bottom: 5px; font-size: 0.95rem; color: var(--text-muted);">This video was taken while cleaning around the surroundings of our school.</p>
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1cEyGD43K1naOw5occGCB5Qm0x-Rsxavj/preview" allow="autoplay"></iframe>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="main-story-card">
+                <div class="story-header-area">
+                    <p class="section-tag">Visual Narrative</p>
+                    <h2>My Story Through Pictures</h2>
+                    <h3 style="font-family: var(--body-font); font-weight: 500; color: var(--text-muted); font-size: 1.2rem; margin-top: 5px;">
+                        A Memorable Day at School
+                    </h3>
+                </div>
+
+                <div class="story-img-wrapper">
+                    <a href="https://drive.google.com/file/d/1jt-tVqD1LRGlZW0c0QkBJ--6KNU2msx0/view?usp=drivesdk" target="_blank">
+                        <img src="storyphoto.jpg" alt="Audritz Songcat - School Memory Photo" class="story-img">
+                    </a>
+                </div>
+                <p class="img-caption">Click the image to view the full story photo asset</p>
+
+                <div class="story-body">
+                    <p>
+                        <strong>This photo</strong> was taken at our school under a large blue sky. It reminds me of the moments I shared with my friends.
+                    </p>
+                    <p>
+                        The grass field provides a relaxing vibe, and the school building in the background made the place feel familiar and welcoming. <em>It was a simple but meaningful moment</em>.
+                    </p>
+                    <p>
+                        Taking photos remids me of my old self <strong>Every photo tells a story</strong>.
+                    </p>
+                </div>
+
+                <div class="highlights-box">
+                    <h4>Things Visible in the Photo</h4>
+                    <div class="highlights-grid">
+                        <div class="highlight-item">Large Grass Field</div>
+                        <div class="highlight-item">School Building</div>
+                        <div class="highlight-item">Students</div>
+                        <div class="highlight-item">Grass and Soil</div>
+                        <div class="highlight-item">Blue Sky</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-card">
+            <h4>Update Personal Details</h4>
+            <div class="form-group">
+                <label for="input-name">Full Name</label>
+                <input type="text" id="input-name">
+            </div>
+            <div class="form-group">
+                <label for="input-status">Status/Role</label>
+                <input type="text" id="input-status">
+            </div>
+            <div class="form-group">
+                <label for="input-age">Age</label>
+                <input type="number" id="input-age">
+            </div>
+            <div class="form-group">
+                <label for="input-location">Location</label>
+                <input type="text" id="input-location">
+            </div>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+            <h5 style="font-family: var(--body-font); font-size: 0.9rem; color: var(--secondary-color); margin-bottom: 10px;">+ Add Custom Row</h5>
+            <div class="form-group" style="display: flex; gap: 8px;">
+                <input type="text" id="input-custom-label" placeholder="e.g. Favorite Color" style="flex: 1;">
+                <input type="text" id="input-custom-value" placeholder="e.g. Blue" style="flex: 1;">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" onclick="closeEditModal()">Cancel</button>
+                <button class="btn-modal btn-save" onclick="savePersonalDetails()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="padding: 0;">
+            <p>&copy; 2026 Audritz Songcat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('editModal');
+
+        function openEditModal() {
+            document.getElementById('input-name').value = document.getElementById('display-name').innerText;
+            document.getElementById('input-status').value = document.getElementById('display-status').innerText;
+            document.getElementById('input-age').value = document.getElementById('display-age').innerText;
+            document.getElementById('input-location').value = document.getElementById('display-location').innerText;
+            document.getElementById('input-custom-label').value = "";
+            document.getElementById('input-custom-value').value = "";
+            modal.classList.add('active');
+        }
+
+        function closeEditModal() {
+            modal.classList.remove('active');
+        }
+
+        function savePersonalDetails() {
+            const nameValue = document.getElementById('input-name').value;
+            const statusValue = document.getElementById('input-status').value;
+            const ageValue = document.getElementById('input-age').value;
+            const locationValue = document.getElementById('input-location').value;
+
+            document.getElementById('display-name').innerText = nameValue;
+            document.getElementById('display-status').innerText = statusValue;
+            document.getElementById('display-age').innerText = ageValue;
+            document.getElementById('display-location').innerText = locationValue;
+
+            document.getElementById('hero-name').innerText = nameValue;
+            document.getElementById('about-name').innerText = nameValue;
+            document.getElementById('hero-status').innerText = statusValue;
+
+            const customLabel = document.getElementById('input-custom-label').value.trim();
+            const customValue = document.getElementById('input-custom-value').value.trim();
+
+            if (customLabel !== "" && customValue !== "") {
+                const listContainer = document.getElementById('personal-details-list');
+                const newRow = document.createElement('li');
+                newRow.innerHTML = `<strong>${customLabel}:</strong> <span>${customValue}</span>`;
+                listContainer.appendChild(newRow);
+            }
+
+            closeEditModal();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeEditModal();
+            }
+        }
+    </script>
+</body>
+</html>
